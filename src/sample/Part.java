@@ -9,16 +9,6 @@ public class Part {
     private SimpleStringProperty name;
     private SimpleDoubleProperty price;
 
-
-//    public Part() {
-//        this.id = 100000;
-//        this.name = "";
-//        this.price = 5.00;
-//        this.stock = 100;
-//        this.min = 10;
-//        this.max = 10000;
-//    }
-
     public Part(int partId, String partName, double partPrice, int partStock, int partMin, int partMax) {
         this.id = new SimpleIntegerProperty(partId);
         this.name = new SimpleStringProperty(partName);
