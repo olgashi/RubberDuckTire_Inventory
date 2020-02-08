@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+// add abstract when finished
 public class Part {
     private SimpleIntegerProperty id, stock, min, max;
     private SimpleStringProperty name;
@@ -18,6 +19,7 @@ public class Part {
         this.max = new SimpleIntegerProperty(partMax);
     }
 
+//          setter methods
 
     public void setId(int partId) {
         this.id = new SimpleIntegerProperty(partId);
@@ -42,7 +44,10 @@ public class Part {
     public void setMax(int partMax) {
         this.max = new SimpleIntegerProperty(partMax);
     }
-//-------------------
+
+
+//          getter methods
+
     public int getId() {
         return id.get();
     }

@@ -25,11 +25,11 @@ public class Product {
         }
 
         public ObservableList<Part> getAllAssociatedParts() {
-            return this.associatedParts;
+            return associatedParts;
         }
 
         public void addAssociatedPart(Part associatedPart) {
-            this.associatedParts.add(associatedPart);
+            associatedParts.add(associatedPart);
         }
         public boolean deleteAssociatedPart(Part selectedAssociatedPart) {
             return associatedParts.remove(searchAssociatedPart(selectedAssociatedPart.getId()));
@@ -45,6 +45,7 @@ public class Product {
         else return null;
     }
 
+//          setter methods
 
     public void setId(int ProductId) {
             this.id = new SimpleIntegerProperty(ProductId);
@@ -62,23 +63,25 @@ public class Product {
             this.stock = new SimpleIntegerProperty(ProductStock);
         }
 
-        public void setMin(int ProductMin) {
-            this.min = new SimpleIntegerProperty(ProductMin);
-        }
+    public void setMin(int ProductMin) {
+        this.min = new SimpleIntegerProperty(ProductMin);
+    }
 
-        public void setMax(int ProductMax) {
-            this.max = new SimpleIntegerProperty(ProductMax);
-        }
-        //-------------------
-        public int getId() {
-            return id.get();
-        }
+    public void setMax(int ProductMax) {
+        this.max = new SimpleIntegerProperty(ProductMax);
+    }
 
-        public String getName() {
-            return name.get();
-        }
+//        getter methods
 
-        public double getPrice() {
+    public int getId() {
+        return id.get();
+    }
+
+    public String getName() {
+        return name.get();
+    }
+
+    public double getPrice() {
             return price.get();
         }
 
@@ -93,9 +96,4 @@ public class Product {
         public int getMax() {
             return max.get();
         }
-
-        public void addAssoiciatedPart(Part part){
-
-        }
-
 }
