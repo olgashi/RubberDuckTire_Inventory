@@ -19,6 +19,11 @@ public class Part {
         this.max = new SimpleIntegerProperty(partMax);
     }
 
+    //default constructor
+    public Part() {
+
+    }
+
 //          setter methods
 
     public void setId(int partId) {
