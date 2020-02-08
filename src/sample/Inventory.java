@@ -10,7 +10,7 @@ public class Inventory {
     private static ObservableList<Product> allProducts = observableArrayList();
     private static ObservableList<Part> allParts = observableArrayList();
 
-    public void addPart(Part part) {
+    public static void addPart(Part part) {
         allParts.add(part);
     }
 
