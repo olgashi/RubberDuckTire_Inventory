@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
+
 public class addPartViewController implements Initializable {
 
     @FXML
@@ -69,11 +70,8 @@ public class addPartViewController implements Initializable {
     private Label partCompanyNameMachineIDLabel;
 
     private ToggleGroup partTypeToggleGroup;
-    private int partIdCounter;
 
-    {
-        partIdCounter = 1000;
-    }
+    public static int partIdCounter;
 
 
     public void changeSceneMainWindowView(ActionEvent event) throws IOException {
@@ -93,7 +91,8 @@ public class addPartViewController implements Initializable {
     }
 
     public void addPartSaveButtonPushed() {
-        partIdCounter += 1;
+
+        partIdTextField.setText(String.valueOf(partIdCounter));
         if (partInHouseRadioButton.isSelected()) {
             Inventory.addPart(new InHouse(partIdCounter, partNameTextField.getText(),
                 Double.parseDouble(partPriceCostTextField.getText()), Integer.parseInt(partInventoryTextField.getText()),
@@ -106,7 +105,7 @@ public class addPartViewController implements Initializable {
                 Integer.parseInt(partMinTextField.getText()), Integer.parseInt(partMaxTextField.getText()),
                 partCompanyNameMachineIDTextField.getText()));
         }
-
+        System.out.println();
         clearAddPartTextFields();
     }
 
@@ -124,6 +123,7 @@ public class addPartViewController implements Initializable {
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
+        partIdCounter = Inventory.lookupPartWithHighestID() + 1;
         partTypeToggleGroup = new ToggleGroup();
         this.partInHouseRadioButton.setToggleGroup(partTypeToggleGroup);
         this.partViewOutSourcedRadioButton.setToggleGroup(partTypeToggleGroup);

@@ -10,6 +10,7 @@ public class Inventory {
     private static ObservableList<Product> allProducts = observableArrayList();
     private static ObservableList<Part> allParts = observableArrayList();
 
+
     public static void addPart(Part part) {
         allParts.add(part);
     }
@@ -97,6 +98,23 @@ public class Inventory {
     public static ObservableList<Product> getAllProducts() {
         return allProducts;
     }
+
+    public static int lookupPartWithHighestID() {
+        ObservableList<Part> allParts = getAllParts();
+
+        if (getAllParts().size() > 0) {
+            Part max = allParts.get(0);
+            for (int i = 1; i < allParts.size(); i++) {
+                if (allParts.get(i).getId() > max.getId()) {
+                    max = allParts.get(i);
+                }
+            }
+            return max.getId();
+        } else {
+            return 0;
+        }
+    }
 }
+
 
 
