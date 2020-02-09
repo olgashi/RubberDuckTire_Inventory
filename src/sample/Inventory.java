@@ -114,6 +114,22 @@ public class Inventory {
             return 0;
         }
     }
+
+    public static int lookupProductWithHighestID() {
+        ObservableList<Product> allProducts = getAllProducts();
+
+        if (getAllProducts().size() > 0) {
+            Product max = allProducts.get(0);
+            for (int i = 1; i < allProducts.size(); i++) {
+                if (allProducts.get(i).getId() > max.getId()) {
+                    max = allProducts.get(i);
+                }
+            }
+            return max.getId();
+        } else {
+            return 0;
+        }
+    }
 }
 
 
