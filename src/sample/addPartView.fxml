@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -12,24 +11,27 @@
             <Font size="18.0"/>
          </font>
       </Label>
-      <RadioButton layoutX="179.0" layoutY="45.0" mnemonicParsing="false" text="In-House"/>
-      <RadioButton layoutX="335.0" layoutY="45.0" mnemonicParsing="false" text="Outsourced"/>
-      <TextField editable="false" layoutX="177.0" layoutY="103.0"/>
-      <TextField layoutX="177.0" layoutY="152.0"/>
-      <TextField layoutX="177.0" layoutY="194.0"/>
-      <TextField layoutX="177.0" layoutY="239.0"/>
-      <TextField layoutX="177.0" layoutY="287.0" prefHeight="27.0" prefWidth="81.0"/>
-      <TextField layoutX="328.0" layoutY="287.0" prefHeight="27.0" prefWidth="81.0"/>
-      <TextField layoutX="177.0" layoutY="331.0"/>
-      <Label layoutX="65.0" layoutY="108.0" text="ID"/>
-      <Label layoutX="65.0" layoutY="157.0" text="Name"/>
-      <Label layoutX="65.0" layoutY="199.0" text="Inv"/>
-      <Label layoutX="65.0" layoutY="244.0" text="Price/Cost"/>
-      <Label layoutX="65.0" layoutY="292.0" text="Max"/>
-      <Label layoutX="65.0" layoutY="336.0" text="Company Name"/>
-      <Label layoutX="283.0" layoutY="292.0" text="Min"/>
-      <Button layoutX="220.0" layoutY="428.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="109.0" text="Save"/>
-      <Button layoutX="356.0" layoutY="428.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="109.0"
-              text="Cancel"/>
+      <RadioButton fx:id="partInHouseRadioButton" layoutX="179.0" layoutY="45.0" mnemonicParsing="false"
+                   onAction="#inHouseRadioButtonSelected" text="In-House"/>
+      <RadioButton fx:id="partViewOutSourcedRadioButton" layoutX="335.0" layoutY="45.0" mnemonicParsing="false"
+                   onAction="#outsourcedRadioButtonSelected" text="Outsourced"/>
+      <TextField fx:id="partIdTextField" disable="true" editable="false" layoutX="177.0" layoutY="103.0"/>
+      <TextField fx:id="partNameTextField" layoutX="177.0" layoutY="152.0"/>
+      <TextField fx:id="partInventoryTextField" layoutX="177.0" layoutY="194.0"/>
+      <TextField fx:id="partPriceCostTextField" layoutX="177.0" layoutY="239.0"/>
+      <TextField fx:id="partMinTextField" layoutX="177.0" layoutY="287.0" prefHeight="27.0" prefWidth="81.0"/>
+      <TextField fx:id="partMaxTextField" layoutX="328.0" layoutY="287.0" prefHeight="27.0" prefWidth="81.0"/>
+      <TextField fx:id="partCompanyNameMachineIDTextField" layoutX="177.0" layoutY="331.0"/>
+      <Label fx:id="partIdLabel" layoutX="65.0" layoutY="108.0" text="ID"/>
+      <Label fx:id="nameLabel" layoutX="65.0" layoutY="157.0" text="Name"/>
+      <Label fx:id="inventoryLabel" layoutX="65.0" layoutY="199.0" text="Inv"/>
+      <Label fx:id="priceCostLabel" layoutX="65.0" layoutY="244.0" text="Price/Cost"/>
+      <Label fx:id="minLabel" layoutX="65.0" layoutY="292.0" text="Min"/>
+      <Label fx:id="partCompanyNameMachineIDLabel" layoutX="65.0" layoutY="336.0" text="Company Name"/>
+      <Label fx:id="maxLabel" layoutX="283.0" layoutY="292.0" text="Max"/>
+      <Button fx:id="addPartViewSaveButton" layoutX="220.0" layoutY="428.0" mnemonicParsing="false"
+              onAction="#addPartSaveButtonPushed" prefHeight="27.0" prefWidth="109.0" text="Save"/>
+      <Button fx:id="addPartViewCancelButton" layoutX="356.0" layoutY="428.0" mnemonicParsing="false"
+              onAction="#changeSceneMainWindowView" prefHeight="27.0" prefWidth="109.0" text="Cancel"/>
    </children>
 </AnchorPane>

@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
+
 public class Controller implements Initializable {
     @FXML
     private TableView<Part> partTableView;
@@ -79,19 +80,18 @@ public class Controller implements Initializable {
     }
 
     public void deletePartButtonPushed() {
-//        ObservableList<Part> selectedRows, allParts;
-//        allParts = partTableView.getItems();
-
         Part selectedRowPart = partTableView.getSelectionModel().getSelectedItem();
         Inventory.deletePart(selectedRowPart);
     }
 
     public void deleteProductButtonPushed() {
-//        ObservableList<Product> selectedRows, allProducts;
-//        allProducts = productTableView.getItems();
-
         Product selectedRowProduct = productTableView.getSelectionModel().getSelectedItem();
         Inventory.deleteProduct(selectedRowProduct);
+    }
+
+    public void closeButtonAction() {
+        Stage stage = (Stage) mainWindowExitButton.getScene().getWindow();
+        stage.close();
     }
 
 

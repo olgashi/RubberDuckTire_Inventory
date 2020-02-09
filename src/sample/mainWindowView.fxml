@@ -19,7 +19,7 @@
             <children>
                 <Label layoutX="28.0" layoutY="28.0" text="Inventory Management System"/>
                 <Button fx:id="mainWindowExitButton" layoutX="818.0" layoutY="505.0" mnemonicParsing="false"
-                        prefHeight="27.0" prefWidth="108.0" text="Exit"/>
+                        onAction="#closeButtonAction" prefHeight="27.0" prefWidth="108.0" text="Exit"/>
                 <Label fx:id="partsLabel" layoutX="32.0" layoutY="71.0" text="Parts"/>
                 <Label fx:id="productsLabel" layoutX="499.0" layoutY="65.0" prefHeight="29.0" prefWidth="57.0"
                        text="Products"/>
