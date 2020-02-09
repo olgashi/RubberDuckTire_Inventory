@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -80,24 +79,19 @@ public class Controller implements Initializable {
     }
 
     public void deletePartButtonPushed() {
-        ObservableList<Part> selectedRows, allParts;
-        allParts = partTableView.getItems();
+//        ObservableList<Part> selectedRows, allParts;
+//        allParts = partTableView.getItems();
 
         Part selectedRowPart = partTableView.getSelectionModel().getSelectedItem();
         Inventory.deletePart(selectedRowPart);
     }
 
     public void deleteProductButtonPushed() {
-        ObservableList<Product> selectedRows, allProducts;
-        allProducts = productTableView.getItems();
+//        ObservableList<Product> selectedRows, allProducts;
+//        allProducts = productTableView.getItems();
 
-        selectedRows = productTableView.getSelectionModel().getSelectedItems();
-
-
-        for (Product product : selectedRows) {
-            allProducts.remove(product);
-
-        }
+        Product selectedRowProduct = productTableView.getSelectionModel().getSelectedItem();
+        Inventory.deleteProduct(selectedRowProduct);
     }
 
 

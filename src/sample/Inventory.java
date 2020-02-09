@@ -26,7 +26,7 @@ public class Inventory {
         } else return null;
     }
 
-    public Product lookupProduct(int productId) {
+    public static Product lookupProduct(int productId) {
         FilteredList<Product> products = new FilteredList<>(allProducts, pre -> true);
         products.setPredicate(product -> product.getId() == productId);
         if (products.size() > 0) {
@@ -81,7 +81,7 @@ public class Inventory {
         } else return false;
     }
 
-    public boolean deleteProduct(Product selectedProduct) {
+    public static boolean deleteProduct(Product selectedProduct) {
         Product foundProduct = lookupProduct(selectedProduct.getId());
         if (foundProduct != null) {
             allProducts.remove(selectedProduct);
