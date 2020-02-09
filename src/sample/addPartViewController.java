@@ -90,9 +90,7 @@ public class addPartViewController implements Initializable {
         partCompanyNameMachineIDLabel.setText("Company Name");
     }
 
-    public void addPartSaveButtonPushed() {
-
-        partIdTextField.setText(String.valueOf(partIdCounter));
+    public void addPartSaveButtonClicked() {
         if (partInHouseRadioButton.isSelected()) {
             Inventory.addPart(new InHouse(partIdCounter, partNameTextField.getText(),
                 Double.parseDouble(partPriceCostTextField.getText()), Integer.parseInt(partInventoryTextField.getText()),
@@ -105,7 +103,6 @@ public class addPartViewController implements Initializable {
                 Integer.parseInt(partMinTextField.getText()), Integer.parseInt(partMaxTextField.getText()),
                 partCompanyNameMachineIDTextField.getText()));
         }
-        System.out.println();
         clearAddPartTextFields();
     }
 

@@ -94,6 +94,20 @@ public class Controller implements Initializable {
         stage.close();
     }
 
+    public void changeSceneModifyPartView(ActionEvent event) throws IOException {
+        Part selectedRowPart = partTableView.getSelectionModel().getSelectedItem();
+        Parent mainWindowViewParent = FXMLLoader.load(getClass().getResource("modifyPartView.fxml"));
+//        modifyViewController controller = loader.<modifyViewController>getController();
+//        controller.setData(data);
+        Scene modifyPartViewScene = new Scene(mainWindowViewParent);
+//
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//
+        window.setScene(modifyPartViewScene);
+        window.show();
+
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

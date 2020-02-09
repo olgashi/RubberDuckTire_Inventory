@@ -43,7 +43,7 @@
                 <Button fx:id="deletePartButton" layoutX="353.0" layoutY="415.0" mnemonicParsing="false"
                         onAction="#deletePartButtonPushed" prefHeight="27.0" prefWidth="108.0" text="Delete"/>
                 <Button fx:id="modifyPartButton" layoutX="231.0" layoutY="415.0" mnemonicParsing="false"
-                        prefHeight="27.0" prefWidth="108.0" text="Modify"/>
+                        onAction="#changeSceneModifyPartView" prefHeight="27.0" prefWidth="108.0" text="Modify"/>
                 <Button fx:id="addPartButton" layoutX="111.0" layoutY="415.0" mnemonicParsing="false"
                         onAction="#changeSceneAddPartView" prefHeight="27.0" prefWidth="108.0" text="Add"/>
                 <Button fx:id="deleteProductButton" layoutX="830.0" layoutY="415.0" mnemonicParsing="false"

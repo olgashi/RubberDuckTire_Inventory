@@ -9,10 +9,10 @@ import javafx.collections.transformation.FilteredList;
 public class Product {
 
 
-        private SimpleIntegerProperty id, stock, min, max;
-        private SimpleStringProperty name;
-        private SimpleDoubleProperty price;
-        private ObservableList<Part> associatedParts;
+    private SimpleIntegerProperty id, stock, min, max;
+    private SimpleStringProperty name;
+    private SimpleDoubleProperty price;
+    private ObservableList<Part> associatedParts;
 
     public Product(int ProductId, String ProductName, double ProductPrice, int ProductStock, int ProductMin, int ProductMax, ObservableList<Part> associatedParts) {
         this.id = new SimpleIntegerProperty(ProductId);
@@ -39,7 +39,7 @@ public class Product {
 
     public boolean deleteAssociatedPart(Part selectedAssociatedPart) {
         return associatedParts.remove(searchAssociatedPart(selectedAssociatedPart.getId()));
-        }
+    }
 
     public Part searchAssociatedPart(int partID) {
         FilteredList<Part> parts = new FilteredList<>(associatedParts, pre -> true);
@@ -47,8 +47,7 @@ public class Product {
 
         if (parts.size() > 0) {
             return parts.get(0);
-        }
-        else return null;
+        } else return null;
     }
 
 //          setter methods

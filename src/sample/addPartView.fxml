@@ -15,7 +15,8 @@
                    onAction="#inHouseRadioButtonSelected" text="In-House"/>
       <RadioButton fx:id="partViewOutSourcedRadioButton" layoutX="335.0" layoutY="45.0" mnemonicParsing="false"
                    onAction="#outsourcedRadioButtonSelected" text="Outsourced"/>
-      <TextField fx:id="partIdTextField" disable="true" editable="false" layoutX="177.0" layoutY="103.0"/>
+      <TextField fx:id="partIdTextField" disable="true" editable="false" layoutX="177.0" layoutY="103.0"
+                 text="Auto Gen - Disabled"/>
       <TextField fx:id="partNameTextField" layoutX="177.0" layoutY="152.0"/>
       <TextField fx:id="partInventoryTextField" layoutX="177.0" layoutY="194.0"/>
       <TextField fx:id="partPriceCostTextField" layoutX="177.0" layoutY="239.0"/>
@@ -30,7 +31,7 @@
       <Label fx:id="partCompanyNameMachineIDLabel" layoutX="65.0" layoutY="336.0" text="Company Name"/>
       <Label fx:id="maxLabel" layoutX="283.0" layoutY="292.0" text="Max"/>
       <Button fx:id="addPartViewSaveButton" layoutX="220.0" layoutY="428.0" mnemonicParsing="false"
-              onAction="#addPartSaveButtonPushed" prefHeight="27.0" prefWidth="109.0" text="Save"/>
+              onAction="#addPartSaveButtonClicked" prefHeight="27.0" prefWidth="109.0" text="Save"/>
       <Button fx:id="addPartViewCancelButton" layoutX="356.0" layoutY="428.0" mnemonicParsing="false"
               onAction="#changeSceneMainWindowView" prefHeight="27.0" prefWidth="109.0" text="Cancel"/>
    </children>
