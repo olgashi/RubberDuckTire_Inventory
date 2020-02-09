@@ -1,11 +1,18 @@
 package sample;
 
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,15 +30,76 @@ public class Controller implements Initializable {
     private TableColumn<Part, Integer> partCostPerUnitColumn;
 
     @FXML
-    private TableView<Part> productTableView;
+    private TableView<Product> productTableView;
     @FXML
-    private TableColumn<Part, Integer> productIdColumn;
+    private TableColumn<Product, Integer> productIdColumn;
     @FXML
-    private TableColumn<Part, String> productNameColumn;
+    private TableColumn<Product, String> productNameColumn;
     @FXML
-    private TableColumn<Part, Integer> productInventoryLevelColumn;
+    private TableColumn<Product, Integer> productInventoryLevelColumn;
     @FXML
-    private TableColumn<Part, Integer> productCostPerUnitColumn;
+    private TableColumn<Product, Integer> productCostPerUnitColumn;
+
+
+    @FXML
+    private Label partsLabel;
+    @FXML
+    private Label productsLabel;
+    @FXML
+    private TextField searchPartTextField;
+    @FXML
+    private TextField searchProductTextField;
+    @FXML
+    private Button searchProductButton;
+    @FXML
+    private Button searchPartButton;
+    @FXML
+    private Button addProductButton;
+    @FXML
+    private Button addPartButton;
+    @FXML
+    private Button modifyProductButton;
+    @FXML
+    private Button modifyPartButton;
+    @FXML
+    private Button deleteProductButton;
+    @FXML
+    private Button deletePartButton;
+    @FXML
+    private Button mainWindowExitButton;
+
+
+    public void changeSceneAddPartView(ActionEvent event) throws IOException {
+        Parent mainWindowViewParent = FXMLLoader.load(getClass().getResource("addPartView.fxml"));
+        Scene addPartViewScene = new Scene(mainWindowViewParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(addPartViewScene);
+        window.show();
+    }
+
+    public void deletePartButtonPushed() {
+        ObservableList<Part> selectedRows, allParts;
+        allParts = partTableView.getItems();
+
+        Part selectedRowPart = partTableView.getSelectionModel().getSelectedItem();
+        Inventory.deletePart(selectedRowPart);
+    }
+
+    public void deleteProductButtonPushed() {
+        ObservableList<Product> selectedRows, allProducts;
+        allProducts = productTableView.getItems();
+
+        selectedRows = productTableView.getSelectionModel().getSelectedItems();
+
+
+        for (Product product : selectedRows) {
+            allProducts.remove(product);
+
+        }
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -44,15 +112,15 @@ public class Controller implements Initializable {
         partCostPerUnitColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("price"));
 
 
-        productIdColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("id"));
-        productNameColumn.setCellValueFactory(new PropertyValueFactory<Part, String>("name"));
-        productInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("stock"));
-        productCostPerUnitColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("price"));
+        productIdColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
+        productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+        productInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("stock"));
+        productCostPerUnitColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
 
 
         //load parts and product items
         partTableView.setItems(Inventory.getAllParts());
-        productTableView.setItems(Inventory.getAllParts());
+        productTableView.setItems(Inventory.getAllProducts());
 
 
     }

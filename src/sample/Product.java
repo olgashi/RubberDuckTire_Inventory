@@ -14,25 +14,31 @@ public class Product {
         private SimpleDoubleProperty price;
         private ObservableList<Part> associatedParts;
 
-        public Product(int ProductId, String ProductName, double ProductPrice, int ProductStock, int ProductMin, int ProductMax, ObservableList<Part> associatedParts) {
-            this.id = new SimpleIntegerProperty(ProductId);
-            this.name = new SimpleStringProperty(ProductName);
-            this.price = new SimpleDoubleProperty(ProductPrice);
-            this.stock = new SimpleIntegerProperty(ProductStock);
-            this.min = new SimpleIntegerProperty(ProductMin);
-            this.max = new SimpleIntegerProperty(ProductMax);
-            this.associatedParts = associatedParts;
-        }
+    public Product(int ProductId, String ProductName, double ProductPrice, int ProductStock, int ProductMin, int ProductMax, ObservableList<Part> associatedParts) {
+        this.id = new SimpleIntegerProperty(ProductId);
+        this.name = new SimpleStringProperty(ProductName);
+        this.price = new SimpleDoubleProperty(ProductPrice);
+        this.stock = new SimpleIntegerProperty(ProductStock);
+        this.min = new SimpleIntegerProperty(ProductMin);
+        this.max = new SimpleIntegerProperty(ProductMax);
+        this.associatedParts = associatedParts;
+    }
 
-        public ObservableList<Part> getAllAssociatedParts() {
-            return associatedParts;
-        }
+    //default constructor
+    public Product() {
 
-        public void addAssociatedPart(Part associatedPart) {
-            associatedParts.add(associatedPart);
-        }
-        public boolean deleteAssociatedPart(Part selectedAssociatedPart) {
-            return associatedParts.remove(searchAssociatedPart(selectedAssociatedPart.getId()));
+    }
+
+    public ObservableList<Part> getAllAssociatedParts() {
+        return associatedParts;
+    }
+
+    public void addAssociatedPart(Part associatedPart) {
+        associatedParts.add(associatedPart);
+    }
+
+    public boolean deleteAssociatedPart(Part selectedAssociatedPart) {
+        return associatedParts.remove(searchAssociatedPart(selectedAssociatedPart.getId()));
         }
 
     public Part searchAssociatedPart(int partID) {

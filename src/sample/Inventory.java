@@ -14,11 +14,11 @@ public class Inventory {
         allParts.add(part);
     }
 
-    public void addProduct(Product product) {
+    public static void addProduct(Product product) {
         allProducts.add(product);
     }
 
-    public Part lookupPart(int partID) {
+    public static Part lookupPart(int partID) {
         FilteredList<Part> parts = new FilteredList<>(allParts, pre -> true);
         parts.setPredicate(part -> part.getId() == partID);
         if (parts.size() > 0) {
@@ -73,7 +73,7 @@ public class Inventory {
         product.setMax(selectedProduct.getMax());
     }
 
-    public boolean deletePart(Part selectedPart) {
+    public static boolean deletePart(Part selectedPart) {
         Part foundPart = lookupPart(selectedPart.getId());
         if (foundPart != null) {
             allParts.remove(selectedPart);

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="531.0" prefWidth="486.0" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.addPartViewController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="40.0" prefWidth="109.0" text="Add Part">
+         <font>
+            <Font size="18.0"/>
+         </font>
+      </Label>
+      <RadioButton layoutX="179.0" layoutY="45.0" mnemonicParsing="false" text="In-House"/>
+      <RadioButton layoutX="335.0" layoutY="45.0" mnemonicParsing="false" text="Outsourced"/>
+      <TextField editable="false" layoutX="177.0" layoutY="103.0"/>
+      <TextField layoutX="177.0" layoutY="152.0"/>
+      <TextField layoutX="177.0" layoutY="194.0"/>
+      <TextField layoutX="177.0" layoutY="239.0"/>
+      <TextField layoutX="177.0" layoutY="287.0" prefHeight="27.0" prefWidth="81.0"/>
+      <TextField layoutX="328.0" layoutY="287.0" prefHeight="27.0" prefWidth="81.0"/>
+      <TextField layoutX="177.0" layoutY="331.0"/>
+      <Label layoutX="65.0" layoutY="108.0" text="ID"/>
+      <Label layoutX="65.0" layoutY="157.0" text="Name"/>
+      <Label layoutX="65.0" layoutY="199.0" text="Inv"/>
+      <Label layoutX="65.0" layoutY="244.0" text="Price/Cost"/>
+      <Label layoutX="65.0" layoutY="292.0" text="Max"/>
+      <Label layoutX="65.0" layoutY="336.0" text="Company Name"/>
+      <Label layoutX="283.0" layoutY="292.0" text="Min"/>
+      <Button layoutX="220.0" layoutY="428.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="109.0" text="Save"/>
+      <Button layoutX="356.0" layoutY="428.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="109.0"
+              text="Cancel"/>
+   </children>
+</AnchorPane>
