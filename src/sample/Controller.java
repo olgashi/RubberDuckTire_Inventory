@@ -16,7 +16,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-
 public class Controller implements Initializable {
     @FXML
     private TableView<Part> partTableView;
@@ -93,14 +92,18 @@ public class Controller implements Initializable {
         Stage stage = (Stage) mainWindowExitButton.getScene().getWindow();
         stage.close();
     }
+//    pass selected row data to modify part scene
 
     public void changeSceneModifyPartView(ActionEvent event) throws IOException {
-        Part selectedRowPart = partTableView.getSelectionModel().getSelectedItem();
-        Parent mainWindowViewParent = FXMLLoader.load(getClass().getResource("modifyPartView.fxml"));
-//        modifyViewController controller = loader.<modifyViewController>getController();
-//        controller.setData(data);
-        Scene modifyPartViewScene = new Scene(mainWindowViewParent);
-//
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("modifyPartView.fxml"));
+        Parent mainViewParent = loader.load();
+
+        Scene modifyPartViewScene = new Scene(mainViewParent);
+
+        modifyPartViewController controller = loader.getController();
+        controller.initData(partTableView.getSelectionModel().getSelectedItem());
+
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 //
         window.setScene(modifyPartViewScene);
@@ -119,18 +122,14 @@ public class Controller implements Initializable {
         partInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("stock"));
         partCostPerUnitColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("price"));
 
-
         productIdColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("id"));
         productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
         productInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("stock"));
         productCostPerUnitColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("price"));
 
-
         //load parts and product items
         partTableView.setItems(Inventory.getAllParts());
         productTableView.setItems(Inventory.getAllProducts());
-
-
     }
 
 

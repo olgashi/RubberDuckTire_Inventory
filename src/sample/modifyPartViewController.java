@@ -20,7 +20,7 @@ public class modifyPartViewController implements Initializable {
     private RadioButton modifyPartInHouseRadioButton;
 
     @FXML
-    private RadioButton modifyPartViewOutSourcedRadioButton;
+    private RadioButton modifyPartOutSourcedRadioButton;
 
     @FXML
     private Button modifyPartViewSaveButton;
@@ -74,6 +74,26 @@ public class modifyPartViewController implements Initializable {
 
     public static int modifyPartIdCounter;
 
+    public void initData(Part part) {
+        Part selectedPart = part;
+        modifyPartIdTextField.setText(Integer.toString(selectedPart.getId()));
+        modifyPartNameTextField.setText(selectedPart.getName());
+        modifyPartInventoryTextField.setText(Integer.toString(selectedPart.getStock()));
+        modifyPartPriceCostTextField.setText(Double.toString(selectedPart.getPrice()));
+        modifyPartMaxTextField.setText(Integer.toString(selectedPart.getMax()));
+        modifyPartMinTextField.setText(Integer.toString(selectedPart.getMin()));
+//        System.out.println(part.getClass());
+        if (part instanceof InHouse) {
+            modifyPartInHouseRadioButton.setSelected(true);
+            modifyPartCompanyNameMachineIDLabel.setText("Machine ID");
+            modifyPartCompanyNameMachineIDTextField.setText(Integer.toString(((InHouse) part).getMachineId()));
+        } else {
+            modifyPartOutSourcedRadioButton.setSelected(true);
+            modifyPartCompanyNameMachineIDLabel.setText("Company Name");
+            modifyPartCompanyNameMachineIDTextField.setText(((Outsourced) part).getCompanyName());
+        }
+
+    }
 
     public void changeSceneMainWindowView(ActionEvent event) throws IOException {
         Parent mainWindowViewParent = FXMLLoader.load(getClass().getResource("mainWindowView.fxml"));
@@ -124,7 +144,7 @@ public class modifyPartViewController implements Initializable {
 //        modifyPartIdCounter = Inventory.lookupPartWithHighestID() + 1;
         modifyPartTypeToggleGroup = new ToggleGroup();
         this.modifyPartInHouseRadioButton.setToggleGroup(modifyPartTypeToggleGroup);
-        this.modifyPartViewOutSourcedRadioButton.setToggleGroup(modifyPartTypeToggleGroup);
+        this.modifyPartOutSourcedRadioButton.setToggleGroup(modifyPartTypeToggleGroup);
         this.modifyPartIdTextField.isDisable();
 
 
