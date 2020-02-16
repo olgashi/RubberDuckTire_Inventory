@@ -56,7 +56,7 @@ public class Inventory {
         }
     }
 
-    public void updatePart(int index, Part selectedPart) {
+    public static void updatePart(int index, Part selectedPart) {
         Part part = lookupPart(index);
         part.setName(selectedPart.getName());
         part.setPrice(selectedPart.getPrice());
@@ -65,7 +65,7 @@ public class Inventory {
         part.setMax(selectedPart.getMax());
     }
 
-    public void updateProduct(int index, Part selectedProduct) {
+    public static void updateProduct(int index, Product selectedProduct) {
         Product product = lookupProduct(index);
         product.setName(selectedProduct.getName());
         product.setPrice(selectedProduct.getPrice());
