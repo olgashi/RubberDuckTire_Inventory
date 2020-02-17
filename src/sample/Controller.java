@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -105,10 +106,23 @@ public class Controller implements Initializable {
         controller.initData(partTableView.getSelectionModel().getSelectedItem());
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//
+
         window.setScene(modifyPartViewScene);
         window.show();
 
+    }
+
+    public void performPartSearch() {
+        FilteredList<Part> parts = new FilteredList<>(Inventory.getAllParts(), pre -> true);
+        String partToSearch = searchPartTextField.getText().toLowerCase();
+
+        parts.setPredicate(part -> {
+            if (partToSearch == null || partToSearch.isEmpty()) {
+                return true;
+            }
+            return part.getName().toLowerCase().contains(partToSearch);
+        });
+        partTableView.setItems(parts);
     }
 
 

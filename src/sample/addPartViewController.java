@@ -90,7 +90,7 @@ public class addPartViewController implements Initializable {
         partCompanyNameMachineIDLabel.setText("Company Name");
     }
 
-    public void addPartSaveButtonClicked() {
+    public void addPartSaveButtonClicked(ActionEvent event) throws IOException {
         if (partInHouseRadioButton.isSelected()) {
             Inventory.addPart(new InHouse(partIdCounter, partNameTextField.getText(),
                 Double.parseDouble(partPriceCostTextField.getText()), Integer.parseInt(partInventoryTextField.getText()),
@@ -103,18 +103,19 @@ public class addPartViewController implements Initializable {
                 Integer.parseInt(partMinTextField.getText()), Integer.parseInt(partMaxTextField.getText()),
                 partCompanyNameMachineIDTextField.getText()));
         }
-        clearAddPartTextFields();
+//        clearAddPartTextFields();
+        changeSceneMainWindowView(event);
     }
-
-    public void clearAddPartTextFields() {
-        partIdTextField.setText("");
-        partNameTextField.setText("");
-        partPriceCostTextField.setText("");
-        partMaxTextField.setText("");
-        partMinTextField.setText("");
-        partInventoryTextField.setText("");
-        partCompanyNameMachineIDTextField.setText("");
-    }
+//
+//    public void clearAddPartTextFields() {
+//        partIdTextField.setText("");
+//        partNameTextField.setText("");
+//        partPriceCostTextField.setText("");
+//        partMaxTextField.setText("");
+//        partMinTextField.setText("");
+//        partInventoryTextField.setText("");
+//        partCompanyNameMachineIDTextField.setText("");
+//    }
 
 
     @Override

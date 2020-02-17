@@ -116,7 +116,7 @@ public class modifyPartViewController implements Initializable {
         modifyPartCompanyNameMachineIDLabel.setText("Company Name");
     }
 
-    public void modifyPartSaveButtonClicked() {
+    public void modifyPartSaveButtonClicked(ActionEvent event) throws IOException {
 //        refactor, get read of repeated code
         if (modifyPartOutSourcedRadioButton.isSelected() && selectedPart instanceof InHouse) {
             outsourcedRadioButtonSelected();
@@ -168,19 +168,20 @@ public class modifyPartViewController implements Initializable {
                 Inventory.updatePart(selectedPart.getId(), updatedPart);
             }
         }
+        changeSceneMainWindowView(event);
 
-        clearModifyPartTextFields();
+//        clearModifyPartTextFields();
     }
 
-    public void clearModifyPartTextFields() {
-        modifyPartIdTextField.setText("");
-        modifyPartNameTextField.setText("");
-        modifyPartPriceCostTextField.setText("");
-        modifyPartMaxTextField.setText("");
-        modifyPartMinTextField.setText("");
-        modifyPartInventoryTextField.setText("");
-        modifyPartCompanyNameMachineIDTextField.setText("");
-    }
+//    public void clearModifyPartTextFields() {
+//        modifyPartIdTextField.setText("");
+//        modifyPartNameTextField.setText("");
+//        modifyPartPriceCostTextField.setText("");
+//        modifyPartMaxTextField.setText("");
+//        modifyPartMinTextField.setText("");
+//        modifyPartInventoryTextField.setText("");
+//        modifyPartCompanyNameMachineIDTextField.setText("");
+//    }
 
 
     @Override

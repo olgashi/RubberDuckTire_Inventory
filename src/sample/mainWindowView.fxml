@@ -52,7 +52,8 @@
                         prefHeight="27.0" prefWidth="108.0" text="Modify"/>
                 <Button fx:id="addProductButton" layoutX="591.0" layoutY="415.0" mnemonicParsing="false"
                         prefHeight="27.0" prefWidth="108.0" text="Add"/>
-                <Button fx:id="searchPartButton" layoutX="231.0" layoutY="66.0" mnemonicParsing="false" text="Search"/>
+                <Button fx:id="searchPartButton" layoutX="231.0" layoutY="66.0" mnemonicParsing="false"
+                        onAction="#performPartSearch" text="Search"/>
                 <Button fx:id="searchProductButton" layoutX="705.0" layoutY="66.0" mnemonicParsing="false"
                         text="Search"/>
                 <TextField fx:id="searchPartTextField" layoutX="304.0" layoutY="66.0" prefHeight="27.0"
