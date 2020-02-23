@@ -79,6 +79,16 @@ public class Controller implements Initializable {
         window.show();
     }
 
+    public void changeSceneAddProductView(ActionEvent event) throws IOException {
+        Parent mainWindowViewParent = FXMLLoader.load(getClass().getResource("addProductView.fxml"));
+        Scene addPartViewScene = new Scene(mainWindowViewParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(addPartViewScene);
+        window.show();
+    }
+
     public void deletePartButtonPushed() {
         Part selectedRowPart = partTableView.getSelectionModel().getSelectedItem();
         Inventory.deletePart(selectedRowPart);
@@ -122,7 +132,22 @@ public class Controller implements Initializable {
             }
             return part.getName().toLowerCase().contains(partToSearch);
         });
+
         partTableView.setItems(parts);
+    }
+
+    public void performProductSearch() {
+        FilteredList<Product> products = new FilteredList<>(Inventory.getAllProducts(), pre -> true);
+        String productToSearch = searchProductTextField.getText().toLowerCase();
+
+        products.setPredicate(product -> {
+            if (productToSearch == null || productToSearch.isEmpty()) {
+                return true;
+            }
+            return product.getName().toLowerCase().contains(productToSearch);
+        });
+
+        productTableView.setItems(products);
     }
 
 

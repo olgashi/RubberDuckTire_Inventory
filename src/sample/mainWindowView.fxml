@@ -51,11 +51,11 @@
                 <Button fx:id="modifyProductButton" layoutX="710.0" layoutY="415.0" mnemonicParsing="false"
                         prefHeight="27.0" prefWidth="108.0" text="Modify"/>
                 <Button fx:id="addProductButton" layoutX="591.0" layoutY="415.0" mnemonicParsing="false"
-                        prefHeight="27.0" prefWidth="108.0" text="Add"/>
+                        onAction="#changeSceneAddProductView" prefHeight="27.0" prefWidth="108.0" text="Add"/>
                 <Button fx:id="searchPartButton" layoutX="231.0" layoutY="66.0" mnemonicParsing="false"
                         onAction="#performPartSearch" text="Search"/>
                 <Button fx:id="searchProductButton" layoutX="705.0" layoutY="66.0" mnemonicParsing="false"
-                        text="Search"/>
+                        onAction="#performProductSearch" text="Search"/>
                 <TextField fx:id="searchPartTextField" layoutX="304.0" layoutY="66.0" prefHeight="27.0"
                            prefWidth="156.0"/>
                 <TextField fx:id="searchProductTextField" layoutX="778.0" layoutY="66.0" prefHeight="27.0"
