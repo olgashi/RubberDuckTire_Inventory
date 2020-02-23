@@ -115,6 +115,7 @@ public class Inventory {
         }
     }
 
+
     public static int lookupProductWithHighestID() {
         ObservableList<Product> allProducts = getAllProducts();
 
@@ -129,6 +130,14 @@ public class Inventory {
         } else {
             return 0;
         }
+    }
+
+    public static int setPartId() {
+        return lookupPartWithHighestID() + 1;
+    }
+
+    public static int setProductId() {
+        return lookupProductWithHighestID() + 1;
     }
 }
 

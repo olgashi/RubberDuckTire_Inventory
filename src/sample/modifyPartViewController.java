@@ -79,7 +79,7 @@ public class modifyPartViewController implements Initializable {
     public static Part selectedPart;
     ObservableList<Part> allParts = observableArrayList();
 
-    public void initData(Part part) {
+    public void initModifyPartData(Part part) {
         selectedPart = part;
         modifyPartIdTextField.setText(Integer.toString(selectedPart.getId()));
         modifyPartNameTextField.setText(selectedPart.getName());
@@ -169,25 +169,12 @@ public class modifyPartViewController implements Initializable {
             }
         }
         changeSceneMainWindowView(event);
-
-//        clearModifyPartTextFields();
     }
-
-//    public void clearModifyPartTextFields() {
-//        modifyPartIdTextField.setText("");
-//        modifyPartNameTextField.setText("");
-//        modifyPartPriceCostTextField.setText("");
-//        modifyPartMaxTextField.setText("");
-//        modifyPartMinTextField.setText("");
-//        modifyPartInventoryTextField.setText("");
-//        modifyPartCompanyNameMachineIDTextField.setText("");
-//    }
 
 
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
-//        modifyPartIdCounter = Inventory.lookupPartWithHighestID() + 1;
         modifyPartTypeToggleGroup = new ToggleGroup();
         this.modifyPartInHouseRadioButton.setToggleGroup(modifyPartTypeToggleGroup);
         this.modifyPartOutSourcedRadioButton.setToggleGroup(modifyPartTypeToggleGroup);

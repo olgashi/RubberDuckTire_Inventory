@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,42 +27,42 @@ public class addProductViewController implements Initializable {
     private Button addProductViewCancelButton;
 
     @FXML
-    private TextField productIdTextField;
+    private TextField addProductProductIdTextField;
 
     @FXML
-    private TextField productNameTextField;
+    private TextField addProductProductNameTextField;
     @FXML
-    private TextField productPriceCostTextField;
+    private TextField addProductProductPriceCostTextField;
     @FXML
-    private TextField productMaxTextField;
+    private TextField addProductProductMaxTextField;
 
     @FXML
-    private TextField productMinTextField;
+    private TextField addProductProductMinTextField;
 
     @FXML
-    private TextField productInventoryTextField;
+    private TextField addProductProductInventoryTextField;
 
     @FXML
-    private Label productIdLabel;
+    private Label addProductProductIdLabel;
 
     @FXML
-    private Label productNameLabel;
+    private Label addProductProductNameLabel;
     @FXML
-    private Label productPriceCostLabel;
+    private Label addProductProductPriceCostLabel;
 
     @FXML
-    private Label productMaxLabel;
+    private Label addProductProductMaxLabel;
 
     @FXML
-    private Label productMinLabel;
+    private Label addProductProductMinLabel;
 
     @FXML
-    private Label productInventoryLabel;
+    private Label addProductProductInventoryLabel;
 
     @FXML
-    private Button searchPartButton;
+    private Button addProductSearchPartButton;
     @FXML
-    private TextField searchPartTextField;
+    private TextField addProductSearchPartTextField;
     @FXML
     private Button addProductAddAssociatedPartButton;
 
@@ -85,8 +87,10 @@ public class addProductViewController implements Initializable {
     private TableColumn<Part, Integer> addProductAssociatedPartInventoryLevelColumn;
     @FXML
     private TableColumn<Part, Integer> addProductAssociatedPartCostPerUnitColumn;
-
-    public static int partIdCounter;
+    @FXML
+    private ObservableList<Part> addedAssociatedParts = FXCollections.observableArrayList();
+    @FXML
+    private ObservableList<Part> addProductPartTableViewTemp = FXCollections.observableArrayList();
 
 
     public void changeSceneMainWindowView(ActionEvent event) throws IOException {
@@ -97,32 +101,45 @@ public class addProductViewController implements Initializable {
         window.show();
     }
 
-
     public void addProductSaveButtonClicked(ActionEvent event) throws IOException {
-
-//        changeSceneMainWindowView(event);
+        Inventory.addProduct(new Product(Inventory.setProductId(),
+            addProductProductNameTextField.getText(),
+            Double.parseDouble(addProductProductPriceCostTextField.getText()),
+            Integer.parseInt(addProductProductInventoryTextField.getText()),
+            Integer.parseInt(addProductProductMinTextField.getText()),
+            Integer.parseInt(addProductProductMaxTextField.getText()),
+            addedAssociatedParts));
+        System.out.println(Inventory.getAllProducts());
+        changeSceneMainWindowView(event);
     }
 
-//    public void closeButtonActionAddPartView() {
-//        Stage stage = (Stage) addProductViewCancelButton.getScene().getWindow();
-//        stage.close();
-//    }
+    public void addProductAddButtonClicked(ActionEvent event) throws IOException {
+        Part selectedRowPart = addProductPartTableView.getSelectionModel().getSelectedItem();
+        addProductPartTableViewTemp.remove(selectedRowPart);
+        addedAssociatedParts.add(selectedRowPart);
+    }
 
 
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
-//        partIdCounter = Inventory.lookupProductWithHighestID() + 1;
-        this.productIdTextField.isDisable();
 
         addProductPartIdColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("id"));
         addProductPartNameColumn.setCellValueFactory(new PropertyValueFactory<Part, String>("name"));
         addProductPartInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("stock"));
         addProductPartCostPerUnitColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("price"));
 
+        addProductAssociatedPartIdColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("id"));
+        addProductAssociatedPartNameColumn.setCellValueFactory(new PropertyValueFactory<Part, String>("name"));
+        addProductAssociatedPartInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("stock"));
+        addProductAssociatedPartCostPerUnitColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("price"));
+
 
         //load parts and product items
-        addProductPartTableView.setItems(Inventory.getAllParts());
+        addProductPartTableViewTemp = Inventory.getAllParts();
+        addProductPartTableView.setItems(addProductPartTableViewTemp);
+        addProductAssociatedPartTableView.setItems(addedAssociatedParts);
+        this.addProductProductIdTextField.isDisable();
 
 
     }

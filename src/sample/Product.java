@@ -6,22 +6,29 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
+import static javafx.collections.FXCollections.observableArrayList;
+
+
 public class Product {
 
 
     private SimpleIntegerProperty id, stock, min, max;
     private SimpleStringProperty name;
     private SimpleDoubleProperty price;
-    private ObservableList<Part> associatedParts;
+    private static ObservableList<Part> associatedParts = observableArrayList();
 
-    public Product(int ProductId, String ProductName, double ProductPrice, int ProductStock, int ProductMin, int ProductMax, ObservableList<Part> associatedParts) {
+
+    public Product(int ProductId, String ProductName, double ProductPrice, int ProductStock, int ProductMin, int ProductMax, ObservableList<Part> ProductAssociatedParts) {
         this.id = new SimpleIntegerProperty(ProductId);
         this.name = new SimpleStringProperty(ProductName);
         this.price = new SimpleDoubleProperty(ProductPrice);
         this.stock = new SimpleIntegerProperty(ProductStock);
         this.min = new SimpleIntegerProperty(ProductMin);
         this.max = new SimpleIntegerProperty(ProductMax);
-        this.associatedParts = associatedParts;
+        associatedParts = observableArrayList();
+        if (associatedParts != null) {
+            associatedParts.addAll(ProductAssociatedParts);
+        }
     }
 
     //default constructor
@@ -30,6 +37,7 @@ public class Product {
     }
 
     public ObservableList<Part> getAllAssociatedParts() {
+
         return associatedParts;
     }
 

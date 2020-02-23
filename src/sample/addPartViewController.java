@@ -71,8 +71,6 @@ public class addPartViewController implements Initializable {
 
     private ToggleGroup partTypeToggleGroup;
 
-    public static int partIdCounter;
-
 
     public void changeSceneMainWindowView(ActionEvent event) throws IOException {
         Parent mainWindowViewParent = FXMLLoader.load(getClass().getResource("mainWindowView.fxml"));
@@ -92,36 +90,24 @@ public class addPartViewController implements Initializable {
 
     public void addPartSaveButtonClicked(ActionEvent event) throws IOException {
         if (partInHouseRadioButton.isSelected()) {
-            Inventory.addPart(new InHouse(partIdCounter, partNameTextField.getText(),
+            Inventory.addPart(new InHouse(Inventory.setPartId(), partNameTextField.getText(),
                 Double.parseDouble(partPriceCostTextField.getText()), Integer.parseInt(partInventoryTextField.getText()),
                 Integer.parseInt(partMinTextField.getText()), Integer.parseInt(partMaxTextField.getText()),
                 Integer.parseInt(partCompanyNameMachineIDTextField.getText())));
 
         } else {
-            Inventory.addPart(new Outsourced(partIdCounter, partNameTextField.getText(),
+            Inventory.addPart(new Outsourced(Inventory.setPartId(), partNameTextField.getText(),
                 Double.parseDouble(partPriceCostTextField.getText()), Integer.parseInt(partInventoryTextField.getText()),
                 Integer.parseInt(partMinTextField.getText()), Integer.parseInt(partMaxTextField.getText()),
                 partCompanyNameMachineIDTextField.getText()));
         }
-//        clearAddPartTextFields();
         changeSceneMainWindowView(event);
     }
-//
-//    public void clearAddPartTextFields() {
-//        partIdTextField.setText("");
-//        partNameTextField.setText("");
-//        partPriceCostTextField.setText("");
-//        partMaxTextField.setText("");
-//        partMinTextField.setText("");
-//        partInventoryTextField.setText("");
-//        partCompanyNameMachineIDTextField.setText("");
-//    }
 
 
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
-        partIdCounter = Inventory.lookupPartWithHighestID() + 1;
         partTypeToggleGroup = new ToggleGroup();
         this.partInHouseRadioButton.setToggleGroup(partTypeToggleGroup);
         this.partViewOutSourcedRadioButton.setToggleGroup(partTypeToggleGroup);

@@ -49,7 +49,7 @@
                 <Button fx:id="deleteProductButton" layoutX="830.0" layoutY="415.0" mnemonicParsing="false"
                         onAction="#deleteProductButtonPushed" prefHeight="27.0" prefWidth="108.0" text="Delete"/>
                 <Button fx:id="modifyProductButton" layoutX="710.0" layoutY="415.0" mnemonicParsing="false"
-                        prefHeight="27.0" prefWidth="108.0" text="Modify"/>
+                        onAction="#changeSceneModifyProductView" prefHeight="27.0" prefWidth="108.0" text="Modify"/>
                 <Button fx:id="addProductButton" layoutX="591.0" layoutY="415.0" mnemonicParsing="false"
                         onAction="#changeSceneAddProductView" prefHeight="27.0" prefWidth="108.0" text="Add"/>
                 <Button fx:id="searchPartButton" layoutX="231.0" layoutY="66.0" mnemonicParsing="false"

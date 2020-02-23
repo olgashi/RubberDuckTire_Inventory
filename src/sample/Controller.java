@@ -113,11 +113,28 @@ public class Controller implements Initializable {
         Scene modifyPartViewScene = new Scene(mainViewParent);
 
         modifyPartViewController controller = loader.getController();
-        controller.initData(partTableView.getSelectionModel().getSelectedItem());
+        controller.initModifyPartData(partTableView.getSelectionModel().getSelectedItem());
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(modifyPartViewScene);
+        window.show();
+
+    }
+
+    public void changeSceneModifyProductView(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("modifyProductView.fxml"));
+        Parent mainViewParent = loader.load();
+
+        Scene modifyProductViewScene = new Scene(mainViewParent);
+
+        modifyProductViewController controller = loader.getController();
+        controller.initModifyProductData(productTableView.getSelectionModel().getSelectedItem());
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(modifyProductViewScene);
         window.show();
 
     }
