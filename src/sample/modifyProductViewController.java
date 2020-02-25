@@ -96,7 +96,6 @@ public class modifyProductViewController implements Initializable {
     public static Product selectedProduct;
     ObservableList<Part> notAssociatedParts = observableArrayList();
 
-
     public void initModifyProductData(Product product) {
         selectedProduct = product;
 //        System.out.println("Selected Product");
@@ -144,7 +143,6 @@ public class modifyProductViewController implements Initializable {
     }
 
     public void modifyProductAddButtonClicked(ActionEvent event) throws IOException {
-        ObservableList<Part> tempList = observableArrayList();
         Part selectedRowProduct = modifyProductPartTableView.getSelectionModel().getSelectedItem();
         selectedProduct.addAssociatedPart(selectedRowProduct);
         notAssociatedParts.remove(selectedRowProduct);
@@ -152,9 +150,18 @@ public class modifyProductViewController implements Initializable {
     }
 
 
+    public void modifyProductDeleteButtonClicked(ActionEvent event) throws IOException {
+
+        Part selectedRowProduct = modifyProductAssociatedPartTableView.getSelectionModel().getSelectedItem();
+        boolean associatedPartDeleted = selectedProduct.deleteAssociatedPart(selectedRowProduct.getId());
+        notAssociatedParts.add(selectedRowProduct);
+//        modifyProductPartTableView.setItems(notAssociatedParts);
+    }
+
+
     public void modifyProductSaveButtonClicked(ActionEvent event) throws IOException {
 
-        Inventory.updateProduct(selectedProduct.getId(), new Product(selectedProduct.getId(), modifyProductIdTextField.getText(), Double.parseDouble(modifyProductPriceCostTextField.getText()),
+        Inventory.updateProduct(selectedProduct.getId(), new Product(Integer.parseInt(modifyProductIdTextField.getText()), modifyProductNameTextField.getText(), Double.parseDouble(modifyProductPriceCostTextField.getText()),
             Integer.parseInt(modifyProductInventoryTextField.getText()), Integer.parseInt(modifyProductMinTextField.getText()),
             Integer.parseInt(modifyProductMaxTextField.getText()), selectedProduct.getAllAssociatedParts()));
 

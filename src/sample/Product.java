@@ -4,14 +4,13 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
+
+import java.util.Iterator;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
 
 public class Product {
-
-
     private SimpleIntegerProperty id, stock, min, max;
     private SimpleStringProperty name;
     private SimpleDoubleProperty price;
@@ -46,27 +45,32 @@ public class Product {
         associatedParts.add(associatedPart);
     }
 
-    public boolean deleteAssociatedPart(Part selectedAssociatedPart) {
-        return associatedParts.remove(searchAssociatedPart(selectedAssociatedPart.getId()));
-    }
+//    public boolean deleteAssociatedPart(Part selectedAssociatedPart) {
+//        return associatedParts.remove(searchAssociatedPart(selectedAssociatedPart.getId()));
+//    }
 
-    public Part searchAssociatedPart(int partID) {
-        FilteredList<Part> parts = new FilteredList<>(associatedParts, pre -> true);
-        parts.setPredicate(part -> part.getId() == partID);
-
-        if (parts.size() > 0) {
-            return parts.get(0);
-        } else return null;
+    public boolean deleteAssociatedPart(int partID) {
+        boolean deletedPart = false;
+        for (Iterator<Part> iterator = associatedParts.iterator(); iterator.hasNext(); ) {
+            Part thisPart = iterator.next();
+            if (thisPart.getId() == partID) {
+                System.out.println("Iterator");
+                System.out.println(iterator);
+                iterator.remove();
+                deletedPart = true;
+            }
+        }
+        return deletedPart;
     }
 
 //          setter methods
 
     public void setId(int ProductId) {
-            this.id = new SimpleIntegerProperty(ProductId);
-        }
+        this.id = new SimpleIntegerProperty(ProductId);
+    }
 
-        public void setName(String ProductName) {
-            this.name = new SimpleStringProperty(ProductName);
+    public void setName(String ProductName) {
+        this.name = new SimpleStringProperty(ProductName);
         }
 
         public void setPrice(double ProductPrice) {
