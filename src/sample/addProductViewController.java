@@ -119,6 +119,10 @@ public class addProductViewController implements Initializable {
         addedAssociatedParts.add(selectedRowPart);
     }
 
+    public void modifyProductSaveButtonClicked() {
+
+    }
+
 
     @Override
 

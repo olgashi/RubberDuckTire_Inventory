@@ -171,7 +171,6 @@ public class modifyPartViewController implements Initializable {
         changeSceneMainWindowView(event);
     }
 
-
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
@@ -179,7 +178,6 @@ public class modifyPartViewController implements Initializable {
         this.modifyPartInHouseRadioButton.setToggleGroup(modifyPartTypeToggleGroup);
         this.modifyPartOutSourcedRadioButton.setToggleGroup(modifyPartTypeToggleGroup);
         this.modifyPartIdTextField.isDisable();
-
 
     }
 }

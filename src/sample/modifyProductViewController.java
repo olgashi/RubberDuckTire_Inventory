@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static javafx.collections.FXCollections.observableArrayList;
@@ -91,7 +94,8 @@ public class modifyProductViewController implements Initializable {
     private TableColumn<Part, Integer> modifyProductAssociatedPartCostPerUnitColumn;
 
     public static Product selectedProduct;
-    ObservableList<Product> allProducts = observableArrayList();
+    ObservableList<Part> notAssociatedParts = observableArrayList();
+
 
     public void initModifyProductData(Product product) {
         selectedProduct = product;
@@ -113,7 +117,15 @@ public class modifyProductViewController implements Initializable {
             modifyProductAssociatedPartTableView.setItems(selectedProduct.getAllAssociatedParts());
         }
 
+        modifyProductPartIdColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("id"));
+        modifyProductPartNameColumn.setCellValueFactory(new PropertyValueFactory<Part, String>("name"));
+        modifyProductPartInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("stock"));
+        modifyProductPartCostPerUnitColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("price"));
 
+        notAssociatedParts = filterNotAssociatedParts();
+        if (notAssociatedParts != null) {
+            modifyProductPartTableView.setItems(notAssociatedParts);
+        }
     }
 
     public void changeSceneMainWindowView(ActionEvent event) throws IOException {
@@ -124,10 +136,27 @@ public class modifyProductViewController implements Initializable {
         window.show();
     }
 
+    public ObservableList<Part> filterNotAssociatedParts() {
+        List newArray = new ArrayList(Inventory.getAllParts());
+        newArray.removeAll(selectedProduct.getAllAssociatedParts());
+        ObservableList<Part> oNewArray = FXCollections.observableArrayList(newArray);
+        return oNewArray;
+    }
+
+    public void modifyProductAddButtonClicked(ActionEvent event) throws IOException {
+        ObservableList<Part> tempList = observableArrayList();
+        Part selectedRowProduct = modifyProductPartTableView.getSelectionModel().getSelectedItem();
+        selectedProduct.addAssociatedPart(selectedRowProduct);
+        notAssociatedParts.remove(selectedRowProduct);
+        modifyProductPartTableView.setItems(notAssociatedParts);
+    }
+
 
     public void modifyProductSaveButtonClicked(ActionEvent event) throws IOException {
-//        refactor, get read of repeated code
 
+        Inventory.updateProduct(selectedProduct.getId(), new Product(selectedProduct.getId(), modifyProductIdTextField.getText(), Double.parseDouble(modifyProductPriceCostTextField.getText()),
+            Integer.parseInt(modifyProductInventoryTextField.getText()), Integer.parseInt(modifyProductMinTextField.getText()),
+            Integer.parseInt(modifyProductMaxTextField.getText()), selectedProduct.getAllAssociatedParts()));
 
         changeSceneMainWindowView(event);
     }

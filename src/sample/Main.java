@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,8 +32,14 @@ public class Main extends Application {
 //        Inventory.addProduct(new Product(Inventory.setProductId(), "Product 101", 9.99, 5, 1, 100, Inventory.getAllParts()));
 //        Inventory.addProduct(new Product(Inventory.setProductId(), "Product 102", 9.99, 5, 1, 100, Inventory.getAllParts()));
 //        Inventory.addProduct(new Product(Inventory.setProductId(), "Product 103", 9.99, 5, 1, 100, Inventory.getAllParts()));
-        Inventory.addProduct(new Product(Inventory.setProductId(), "Product 104", 9.99, 5, 1, 100, Inventory.getAllParts()));
-        Inventory.addProduct(new Product(Inventory.setProductId(), "Product 105", 9.99, 5, 1, 100, Inventory.getAllParts()));
+        Part newPart1 = Inventory.lookupPart(1);
+        Part newPart2 = Inventory.lookupPart(2);
+        ObservableList<Part> newPartsList = FXCollections.observableArrayList();
+        newPartsList.add(newPart1);
+        newPartsList.add(newPart2);
+
+        Inventory.addProduct(new Product(Inventory.setProductId(), "Product 104", 9.99, 5, 1, 100, newPartsList));
+//        Inventory.addProduct(new Product(Inventory.setProductId(), "Product 105", 9.99, 5, 1, 100, Inventory.getAllParts()));
 
         Application.launch(args);
     }
