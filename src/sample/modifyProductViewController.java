@@ -2,6 +2,7 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +27,12 @@ public class modifyProductViewController implements Initializable {
 
     @FXML
     private Button modifyProductViewSaveButton;
+
+    @FXML
+    private TextField modifyProductViewSearchTextField;
+
+    @FXML
+    private Button modifyProductViewSearchButton;
 
     @FXML
     private Button modifyProductViewDeleteButton;
@@ -141,6 +148,21 @@ public class modifyProductViewController implements Initializable {
         ObservableList<Part> oNewArray = FXCollections.observableArrayList(newArray);
         return oNewArray;
     }
+
+    public void modifyProductperformPartSearch() {
+        FilteredList<Part> parts = new FilteredList<>(Inventory.getAllParts(), pre -> true);
+        String partToSearch = modifyProductViewSearchTextField.getText().toLowerCase();
+
+        parts.setPredicate(part -> {
+            if (partToSearch == null || partToSearch.isEmpty()) {
+                return true;
+            }
+            return part.getName().toLowerCase().contains(partToSearch);
+        });
+
+        modifyProductPartTableView.setItems(parts);
+    }
+
 
     public void modifyProductAddButtonClicked(ActionEvent event) throws IOException {
         Part selectedRowProduct = modifyProductPartTableView.getSelectionModel().getSelectedItem();
