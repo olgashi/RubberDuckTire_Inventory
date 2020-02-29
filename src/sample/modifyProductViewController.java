@@ -149,7 +149,7 @@ public class modifyProductViewController implements Initializable {
         return oNewArray;
     }
 
-    public void modifyProductperformPartSearch() {
+    public void modifyProductPerformPartSearch() {
         FilteredList<Part> parts = new FilteredList<>(Inventory.getAllParts(), pre -> true);
         String partToSearch = modifyProductViewSearchTextField.getText().toLowerCase();
 

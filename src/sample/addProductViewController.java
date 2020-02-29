@@ -2,6 +2,7 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -119,8 +120,18 @@ public class addProductViewController implements Initializable {
         addedAssociatedParts.add(selectedRowPart);
     }
 
-    public void modifyProductSaveButtonClicked() {
+    public void addProductPerformPartSearch() {
+        FilteredList<Part> parts = new FilteredList<>(Inventory.getAllParts(), pre -> true);
+        String partToSearch = addProductSearchPartTextField.getText().toLowerCase();
 
+        parts.setPredicate(part -> {
+            if (partToSearch == null || partToSearch.isEmpty()) {
+                return true;
+            }
+            return part.getName().toLowerCase().contains(partToSearch);
+        });
+
+        addProductPartTableView.setItems(parts);
     }
 
 
