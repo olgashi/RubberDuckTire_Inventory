@@ -106,37 +106,57 @@ public class Controller implements Initializable {
 //    pass selected row data to modify part scene
 
     public void changeSceneModifyPartView(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("modifyPartView.fxml"));
-        Parent mainViewParent = loader.load();
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a row in Parts table and try again.");
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("modifyPartView.fxml"));
+            Parent mainViewParent = loader.load();
 
-        Scene modifyPartViewScene = new Scene(mainViewParent);
+            Scene modifyPartViewScene = new Scene(mainViewParent);
 
-        modifyPartViewController controller = loader.getController();
-        controller.initModifyPartData(partTableView.getSelectionModel().getSelectedItem());
+            modifyPartViewController controller = loader.getController();
+            controller.initModifyPartData(partTableView.getSelectionModel().getSelectedItem());
 
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        window.setScene(modifyPartViewScene);
-        window.show();
+            window.setScene(modifyPartViewScene);
+            window.show();
+        } catch (NullPointerException e) {
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    return;
+                }
+            });
 
+
+        }
     }
 
     public void changeSceneModifyProductView(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("modifyProductView.fxml"));
-        Parent mainViewParent = loader.load();
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a row in Products table and try again.");
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("modifyProductView.fxml"));
+            Parent mainViewParent = loader.load();
 
-        Scene modifyProductViewScene = new Scene(mainViewParent);
+            Scene modifyProductViewScene = new Scene(mainViewParent);
 
-        modifyProductViewController controller = loader.getController();
-        controller.initModifyProductData(productTableView.getSelectionModel().getSelectedItem());
+            modifyProductViewController controller = loader.getController();
+            controller.initModifyProductData(productTableView.getSelectionModel().getSelectedItem());
 
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        window.setScene(modifyProductViewScene);
-        window.show();
+            window.setScene(modifyProductViewScene);
+            window.show();
+        } catch (NullPointerException e) {
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    return;
+                }
+            });
 
+
+        }
     }
 
     public void performPartSearch() {
