@@ -90,13 +90,33 @@ public class Controller implements Initializable {
     }
 
     public void deletePartButtonPushed() {
-        Part selectedRowPart = partTableView.getSelectionModel().getSelectedItem();
-        Inventory.deletePart(selectedRowPart);
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a row in Parts table and try again.");
+        try {
+            Part selectedRowPart = partTableView.getSelectionModel().getSelectedItem();
+            Inventory.deletePart(selectedRowPart);
+        } catch (NullPointerException e) {
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    return;
+                }
+            });
+
+        }
     }
 
     public void deleteProductButtonPushed() {
-        Product selectedRowProduct = productTableView.getSelectionModel().getSelectedItem();
-        Inventory.deleteProduct(selectedRowProduct);
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a row in Products table and try again.");
+        try {
+            Product selectedRowProduct = productTableView.getSelectionModel().getSelectedItem();
+            Inventory.deleteProduct(selectedRowProduct);
+        } catch (NullPointerException e) {
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    return;
+                }
+            });
+
+        }
     }
 
     public void closeButtonAction() {
