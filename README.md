@@ -14,13 +14,16 @@ There are four main screens in the application: “Add Part”, “Modify Part�
 ### Main View
 ![Main view of the application](https://github.com/olgashi/Inventory-Management-Application/blob/master/main-view.png)
 
-### Nodify part view
+### Main View. Warning is displayed if user did not select product and clicked 'Modify'
+![Main view of the application. Warning example](https://github.com/olgashi/Inventory-Management-Application/blob/master/main-no-product-selected-warning.png)
+
+### Modify part view
 ![Modify part view](https://github.com/olgashi/Inventory-Management-Application/blob/master/modify-part-view.jpg)
 
 ### Modify product view
 ![Modify product view](https://github.com/olgashi/Inventory-Management-Application/blob/master/modify-product.png)
 
-### Add product view, warning if fields not provided and/or no parts associated with product
+### Add product view. Warning is displayed if fields not provided and/or no parts associated with product.
 ![Product view with warning](https://github.com/olgashi/Inventory-Management-Application/blob/master/add-product-warning.png)
 
 ## Parts
