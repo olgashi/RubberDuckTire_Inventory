@@ -101,6 +101,7 @@ public class modifyProductViewController implements Initializable {
     private TableColumn<Part, Integer> modifyProductAssociatedPartCostPerUnitColumn;
 
     public static Product selectedProduct;
+
     ObservableList<Part> notAssociatedParts = observableArrayList();
 
     public void initModifyProductData(Product product) {
@@ -165,10 +166,29 @@ public class modifyProductViewController implements Initializable {
 
 
     public void modifyProductAddButtonClicked(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a Part you wish to associate with this product and try again.");
         Part selectedRowProduct = modifyProductPartTableView.getSelectionModel().getSelectedItem();
-        selectedProduct.addAssociatedPart(selectedRowProduct);
-        notAssociatedParts.remove(selectedRowProduct);
-        modifyProductPartTableView.setItems(notAssociatedParts);
+        if (notAssociatedParts.size() == 0) {
+            Alert alertNoItemsLeft = new Alert(Alert.AlertType.WARNING, "There are no parts left. All existing parts have already been associated with the product");
+            alertNoItemsLeft.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    return;
+                }
+            });
+        } else {
+            if (selectedRowProduct != null) {
+                selectedProduct.addAssociatedPart(selectedRowProduct);
+                notAssociatedParts.remove(selectedRowProduct);
+                modifyProductPartTableView.setItems(notAssociatedParts);
+            } else {
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        return;
+                    }
+                });
+
+            }
+        }
     }
 
 

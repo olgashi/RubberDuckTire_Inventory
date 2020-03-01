@@ -90,7 +90,7 @@ public class Controller implements Initializable {
     }
 
     public void deletePartButtonPushed() {
-        Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a row in Parts table and try again.");
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a Part you wish to delete and try again.");
         try {
             Part selectedRowPart = partTableView.getSelectionModel().getSelectedItem();
             Inventory.deletePart(selectedRowPart);
@@ -105,7 +105,7 @@ public class Controller implements Initializable {
     }
 
     public void deleteProductButtonPushed() {
-        Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a row in Products table and try again.");
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a Product you wish to delete and try again.");
         try {
             Product selectedRowProduct = productTableView.getSelectionModel().getSelectedItem();
             Inventory.deleteProduct(selectedRowProduct);
@@ -126,7 +126,7 @@ public class Controller implements Initializable {
 //    pass selected row data to modify part scene
 
     public void changeSceneModifyPartView(ActionEvent event) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a row in Parts table and try again.");
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a Part you wish to modify and try again.");
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("modifyPartView.fxml"));
@@ -153,7 +153,7 @@ public class Controller implements Initializable {
     }
 
     public void changeSceneModifyProductView(ActionEvent event) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a row in Products table and try again.");
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a Product you wish to modify and try again.");
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("modifyProductView.fxml"));

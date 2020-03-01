@@ -89,19 +89,54 @@ public class addPartViewController implements Initializable {
     }
 
     public void addPartSaveButtonClicked(ActionEvent event) throws IOException {
-        if (partInHouseRadioButton.isSelected()) {
-            Inventory.addPart(new InHouse(Inventory.setPartId(), partNameTextField.getText(),
-                Double.parseDouble(partPriceCostTextField.getText()), Integer.parseInt(partInventoryTextField.getText()),
-                Integer.parseInt(partMinTextField.getText()), Integer.parseInt(partMaxTextField.getText()),
-                Integer.parseInt(partCompanyNameMachineIDTextField.getText())));
+        if (validateNewPartInput()) {
+            if (partInHouseRadioButton.isSelected()) {
+                Inventory.addPart(new InHouse(Inventory.setPartId(), partNameTextField.getText(),
+                    Double.parseDouble(partPriceCostTextField.getText()), Integer.parseInt(partInventoryTextField.getText()),
+                    Integer.parseInt(partMinTextField.getText()), Integer.parseInt(partMaxTextField.getText()),
+                    Integer.parseInt(partCompanyNameMachineIDTextField.getText())));
 
-        } else {
-            Inventory.addPart(new Outsourced(Inventory.setPartId(), partNameTextField.getText(),
-                Double.parseDouble(partPriceCostTextField.getText()), Integer.parseInt(partInventoryTextField.getText()),
-                Integer.parseInt(partMinTextField.getText()), Integer.parseInt(partMaxTextField.getText()),
-                partCompanyNameMachineIDTextField.getText()));
+            } else {
+                Inventory.addPart(new Outsourced(Inventory.setPartId(), partNameTextField.getText(),
+                    Double.parseDouble(partPriceCostTextField.getText()), Integer.parseInt(partInventoryTextField.getText()),
+                    Integer.parseInt(partMinTextField.getText()), Integer.parseInt(partMaxTextField.getText()),
+                    partCompanyNameMachineIDTextField.getText()));
+            }
+            changeSceneMainWindowView(event);
         }
-        changeSceneMainWindowView(event);
+    }
+
+    private boolean validateNewPartInput() {
+        try {
+            double inputPrice = Double.parseDouble(partPriceCostTextField.getText());
+
+        } catch (NumberFormatException | NullPointerException e) {
+            return false;
+        }
+        try {
+            int inputStock = Integer.parseInt(partInventoryTextField.getText());
+        } catch (NumberFormatException | NullPointerException e) {
+            return false;
+        }
+        try {
+            int inputMin = Integer.parseInt(partMinTextField.getText());
+        } catch (NumberFormatException | NullPointerException e) {
+            return false;
+        }
+        try {
+            int inputMax = Integer.parseInt(partMaxTextField.getText());
+        } catch (NumberFormatException | NullPointerException e) {
+            return false;
+        }
+        if (partInHouseRadioButton.isSelected()) {
+            try {
+                int inputId = Integer.parseInt(partCompanyNameMachineIDTextField.getText());
+            } catch (NumberFormatException | NullPointerException e) {
+                return false;
+            }
+        }
+        return true;
+
     }
 
 
