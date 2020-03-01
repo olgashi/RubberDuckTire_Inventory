@@ -35,10 +35,7 @@ public class Main extends Application {
         Part newPart3 = Inventory.lookupPart(1);
         Part newPart4 = Inventory.lookupPart(2);
         ObservableList<Part> newPartsList = FXCollections.observableArrayList();
-        newPartsList.add(newPart1);
-        newPartsList.add(newPart2);
-        newPartsList.add(newPart3);
-        newPartsList.add(newPart4);
+        newPartsList.addAll(newPart1, newPart2, newPart3, newPart4);
 
         Inventory.addProduct(new Product(Inventory.setProductId(), "Product 104", 9.99, 5, 1, 100, newPartsList));
         Inventory.addProduct(new Product(Inventory.setProductId(), "Product 105", 9.99, 5, 1, 100, newPartsList));

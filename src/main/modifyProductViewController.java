@@ -183,11 +183,45 @@ public class modifyProductViewController implements Initializable {
 
     // save modified part and exit to main window
     public void modifyProductSaveButtonClicked(ActionEvent event) throws IOException {
-        Inventory.updateProduct(selectedProduct.getId(), new Product(Integer.parseInt(modifyProductIdTextField.getText()), modifyProductNameTextField.getText(), Double.parseDouble(modifyProductPriceCostTextField.getText()),
-            Integer.parseInt(modifyProductInventoryTextField.getText()), Integer.parseInt(modifyProductMinTextField.getText()),
-            Integer.parseInt(modifyProductMaxTextField.getText()), selectedProduct.getAllAssociatedParts()));
+        if (validateModifiedProductInput() && selectedProduct.getAllAssociatedParts().size() > 0) {
+            Inventory.updateProduct(selectedProduct.getId(), new Product(Integer.parseInt(modifyProductIdTextField.getText()), modifyProductNameTextField.getText(), Double.parseDouble(modifyProductPriceCostTextField.getText()),
+                Integer.parseInt(modifyProductInventoryTextField.getText()), Integer.parseInt(modifyProductMinTextField.getText()),
+                Integer.parseInt(modifyProductMaxTextField.getText()), selectedProduct.getAllAssociatedParts()));
 
-        changeSceneMainWindowView(event);
+            changeSceneMainWindowView(event);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Product has to have at least one part associated with it. Make sure all text field input values provided are of correct type.");
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    return;
+                }
+            });
+        }
+    }
+
+    // validates that products' fields are not empty after the modification and that user entered values in appropriate format
+    private boolean validateModifiedProductInput() {
+        try {
+            double inputPrice = Double.parseDouble(modifyProductPriceCostTextField.getText());
+        } catch (NumberFormatException | NullPointerException e) {
+            return false;
+        }
+        try {
+            int inputStock = Integer.parseInt(modifyProductInventoryTextField.getText());
+        } catch (NumberFormatException | NullPointerException e) {
+            return false;
+        }
+        try {
+            int inputMin = Integer.parseInt(modifyProductMinTextField.getText());
+        } catch (NumberFormatException | NullPointerException e) {
+            return false;
+        }
+        try {
+            int inputMax = Integer.parseInt(modifyProductMaxTextField.getText());
+        } catch (NumberFormatException | NullPointerException e) {
+            return false;
+        }
+        return true;
     }
 
     @Override
