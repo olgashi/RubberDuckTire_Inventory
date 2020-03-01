@@ -1,4 +1,4 @@
-package sample;
+package main;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -9,13 +9,11 @@ import java.util.Iterator;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
-
 public class Product {
     private SimpleIntegerProperty id, stock, min, max;
     private SimpleStringProperty name;
     private SimpleDoubleProperty price;
     private static ObservableList<Part> associatedParts = observableArrayList();
-
 
     public Product(int ProductId, String ProductName, double ProductPrice, int ProductStock, int ProductMin, int ProductMax, ObservableList<Part> ProductAssociatedParts) {
         this.id = new SimpleIntegerProperty(ProductId);
@@ -32,9 +30,7 @@ public class Product {
 
     //default constructor
     public Product() {
-
     }
-
 
     public ObservableList<Part> getAllAssociatedParts() {
 
@@ -44,10 +40,6 @@ public class Product {
     public void addAssociatedPart(Part associatedPart) {
         associatedParts.add(associatedPart);
     }
-
-//    public boolean deleteAssociatedPart(Part selectedAssociatedPart) {
-//        return associatedParts.remove(searchAssociatedPart(selectedAssociatedPart.getId()));
-//    }
 
     public boolean deleteAssociatedPart(int partID) {
         boolean deletedPart = false;
@@ -64,7 +56,6 @@ public class Product {
     }
 
 //          setter methods
-
     public void setId(int ProductId) {
         this.id = new SimpleIntegerProperty(ProductId);
     }

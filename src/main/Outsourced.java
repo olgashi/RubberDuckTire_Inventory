@@ -1,8 +1,7 @@
-package sample;
+package main;
 
 public class Outsourced extends Part {
     private String companyName;
-
 
     //default constructor
     public Outsourced() {

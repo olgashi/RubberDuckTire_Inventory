@@ -1,8 +1,7 @@
-package sample;
+package main;
 
 public class InHouse extends Part {
     private int machineId;
-
 
     //default constructor
     public InHouse() {

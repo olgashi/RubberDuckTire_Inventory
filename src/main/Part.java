@@ -1,4 +1,4 @@
-package sample;
+package main;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -17,7 +17,6 @@ public class Part {
         this.stock = new SimpleIntegerProperty(partStock);
         this.min = new SimpleIntegerProperty(partMin);
         this.max = new SimpleIntegerProperty(partMax);
-
     }
 
     //default constructor

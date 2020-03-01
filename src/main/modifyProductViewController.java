@@ -1,4 +1,4 @@
-package sample;
+package main;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,60 +22,42 @@ import java.util.ResourceBundle;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
-
 public class modifyProductViewController implements Initializable {
 
     @FXML
     private Button modifyProductViewSaveButton;
-
     @FXML
     private TextField modifyProductViewSearchTextField;
-
     @FXML
     private Button modifyProductViewSearchButton;
-
     @FXML
     private Button modifyProductViewDeleteButton;
-
     @FXML
     private Button modifyProductViewAddButton;
-
     @FXML
     private Button modifyProductViewCancelButton;
-
     @FXML
     private TextField modifyProductIdTextField;
-
     @FXML
     private TextField modifyProductNameTextField;
-
     @FXML
     private TextField modifyProductPriceCostTextField;
-
     @FXML
     private TextField modifyProductMaxTextField;
-
     @FXML
     private TextField modifyProductMinTextField;
-
     @FXML
     private TextField modifyProductInventoryTextField;
-
     @FXML
     private Label modifyProductIdLabel;
-
     @FXML
     private Label modifyProductNameLabel;
-
     @FXML
     private Label modifyProductPriceCostLabel;
-
     @FXML
     private Label modifyProductMaxLabel;
-
     @FXML
     private Label modifyProductMinLabel;
-
     @FXML
     private Label modifyProductInventoryLabel;
     @FXML
@@ -88,7 +70,6 @@ public class modifyProductViewController implements Initializable {
     private TableColumn<Part, Integer> modifyProductPartInventoryLevelColumn;
     @FXML
     private TableColumn<Part, Integer> modifyProductPartCostPerUnitColumn;
-
     @FXML
     private TableView<Part> modifyProductAssociatedPartTableView;
     @FXML
@@ -105,9 +86,9 @@ public class modifyProductViewController implements Initializable {
     ObservableList<Part> notAssociatedParts = observableArrayList();
 
     public void initModifyProductData(Product product) {
+
         selectedProduct = product;
-//        System.out.println("Selected Product");
-//        System.out.println(selectedProduct.getAllAssociatedParts());
+        // prepopulate text fields with data for selected product
         modifyProductIdTextField.setText(Integer.toString(selectedProduct.getId()));
         modifyProductNameTextField.setText(selectedProduct.getName());
         modifyProductInventoryTextField.setText(Integer.toString(selectedProduct.getStock()));
@@ -119,7 +100,7 @@ public class modifyProductViewController implements Initializable {
         modifyProductAssociatedPartNameColumn.setCellValueFactory(new PropertyValueFactory<Part, String>("name"));
         modifyProductAssociatedPartInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("stock"));
         modifyProductAssociatedPartCostPerUnitColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("price"));
-
+        // populate table with associated parts
         if (selectedProduct.getAllAssociatedParts() != null) {
             modifyProductAssociatedPartTableView.setItems(selectedProduct.getAllAssociatedParts());
         }
@@ -128,13 +109,14 @@ public class modifyProductViewController implements Initializable {
         modifyProductPartNameColumn.setCellValueFactory(new PropertyValueFactory<Part, String>("name"));
         modifyProductPartInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("stock"));
         modifyProductPartCostPerUnitColumn.setCellValueFactory(new PropertyValueFactory<Part, Integer>("price"));
-
+        // populate table with not associated parts
         notAssociatedParts = filterNotAssociatedParts();
         if (notAssociatedParts != null) {
             modifyProductPartTableView.setItems(notAssociatedParts);
         }
     }
 
+    // change scene to main window
     public void changeSceneMainWindowView(ActionEvent event) throws IOException {
         Parent mainWindowViewParent = FXMLLoader.load(getClass().getResource("mainWindowView.fxml"));
         Scene modifyProductViewScene = new Scene(mainWindowViewParent);
@@ -143,6 +125,7 @@ public class modifyProductViewController implements Initializable {
         window.show();
     }
 
+    // filters to a list with only non associated parts
     public ObservableList<Part> filterNotAssociatedParts() {
         List newArray = new ArrayList(Inventory.getAllParts());
         newArray.removeAll(selectedProduct.getAllAssociatedParts());
@@ -150,6 +133,7 @@ public class modifyProductViewController implements Initializable {
         return oNewArray;
     }
 
+    // search for a part
     public void modifyProductPerformPartSearch() {
         FilteredList<Part> parts = new FilteredList<>(Inventory.getAllParts(), pre -> true);
         String partToSearch = modifyProductViewSearchTextField.getText().toLowerCase();
@@ -160,11 +144,10 @@ public class modifyProductViewController implements Initializable {
             }
             return part.getName().toLowerCase().contains(partToSearch);
         });
-
         modifyProductPartTableView.setItems(parts);
     }
 
-
+    // associate part with a product
     public void modifyProductAddButtonClicked(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.WARNING, "Please select a Part you wish to associate with this product and try again.");
         Part selectedRowProduct = modifyProductPartTableView.getSelectionModel().getSelectedItem();
@@ -191,18 +174,15 @@ public class modifyProductViewController implements Initializable {
         }
     }
 
-
+    // disassociate part with a product
     public void modifyProductDeleteButtonClicked(ActionEvent event) throws IOException {
-
         Part selectedRowProduct = modifyProductAssociatedPartTableView.getSelectionModel().getSelectedItem();
         boolean associatedPartDeleted = selectedProduct.deleteAssociatedPart(selectedRowProduct.getId());
         notAssociatedParts.add(selectedRowProduct);
-//        modifyProductPartTableView.setItems(notAssociatedParts);
     }
 
-
+    // save modified part and exit to main window
     public void modifyProductSaveButtonClicked(ActionEvent event) throws IOException {
-
         Inventory.updateProduct(selectedProduct.getId(), new Product(Integer.parseInt(modifyProductIdTextField.getText()), modifyProductNameTextField.getText(), Double.parseDouble(modifyProductPriceCostTextField.getText()),
             Integer.parseInt(modifyProductInventoryTextField.getText()), Integer.parseInt(modifyProductMinTextField.getText()),
             Integer.parseInt(modifyProductMaxTextField.getText()), selectedProduct.getAllAssociatedParts()));
@@ -210,11 +190,9 @@ public class modifyProductViewController implements Initializable {
         changeSceneMainWindowView(event);
     }
 
-
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
         this.modifyProductIdTextField.isDisable();
-
     }
 }

@@ -1,4 +1,4 @@
-package sample;
+package main;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,64 +14,47 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
-
 public class addPartViewController implements Initializable {
 
     @FXML
     private RadioButton partInHouseRadioButton;
-
     @FXML
     private RadioButton partViewOutSourcedRadioButton;
-
     @FXML
     private Button addPartViewSaveButton;
-
     @FXML
     private Button addPartViewCancelButton;
-
     @FXML
     private TextField partIdTextField;
-
     @FXML
     private TextField partNameTextField;
     @FXML
     private TextField partPriceCostTextField;
     @FXML
     private TextField partMaxTextField;
-
     @FXML
     private TextField partMinTextField;
-
     @FXML
     private TextField partInventoryTextField;
-
     @FXML
     private TextField partCompanyNameMachineIDTextField;
-
     @FXML
     private Label partIdLabel;
-
     @FXML
     private Label nameLabel;
     @FXML
     private Label priceCostLabel;
-
     @FXML
     private Label maxLabel;
-
     @FXML
     private Label minLabel;
-
     @FXML
     private Label inventoryLabel;
-
     @FXML
     private Label partCompanyNameMachineIDLabel;
-
     private ToggleGroup partTypeToggleGroup;
 
-
+    // change scene to main window
     public void changeSceneMainWindowView(ActionEvent event) throws IOException {
         Parent mainWindowViewParent = FXMLLoader.load(getClass().getResource("mainWindowView.fxml"));
         Scene addPartViewScene = new Scene(mainWindowViewParent);
@@ -80,14 +63,17 @@ public class addPartViewController implements Initializable {
         window.show();
     }
 
+    // sets partCompanyNameMachineIDLabel label to Machine ID if InHouse radiobutton is selected
     public void inHouseRadioButtonSelected() {
         partCompanyNameMachineIDLabel.setText("Machine ID");
     }
 
+    // sets partCompanyNameMachineIDLabel label to Company Name if Outsourced radiobutton is selected
     public void outsourcedRadioButtonSelected() {
         partCompanyNameMachineIDLabel.setText("Company Name");
     }
 
+    // save new part and return to main window
     public void addPartSaveButtonClicked(ActionEvent event) throws IOException {
         if (validateNewPartInput()) {
             if (partInHouseRadioButton.isSelected()) {
@@ -106,6 +92,7 @@ public class addPartViewController implements Initializable {
         }
     }
 
+    // validates that new part's fields are not empty and that user entered values in appropriate format
     private boolean validateNewPartInput() {
         try {
             double inputPrice = Double.parseDouble(partPriceCostTextField.getText());
@@ -136,9 +123,7 @@ public class addPartViewController implements Initializable {
             }
         }
         return true;
-
     }
-
 
     @Override
 
@@ -147,7 +132,5 @@ public class addPartViewController implements Initializable {
         this.partInHouseRadioButton.setToggleGroup(partTypeToggleGroup);
         this.partViewOutSourcedRadioButton.setToggleGroup(partTypeToggleGroup);
         this.partIdTextField.isDisable();
-
-
     }
 }
