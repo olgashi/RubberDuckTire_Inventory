@@ -2,7 +2,7 @@
 
 ## Scenario
 
-Inventory management application tracks inventory for a small manufacturing enterprise. Inventory consists of Products and Parts.
+Inventory management application tracks inventory for a small Tire manufacturing enterprise. Inventory consists of Tire Products and Tire Parts.
 Each Part has a name, id, current number of parts in stock, price, min and max inventory levels associated with it. Part can be of either InHouse or Outsourced type (class).
 Each Product has a name, id, current number of products in stock, price, min and max inventory levels associated with it. Additionally, Product has to be associated with at least one part.
 
