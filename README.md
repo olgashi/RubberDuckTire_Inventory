@@ -14,7 +14,14 @@ There are four main screens in the application: “Add Part”, “Modify Part�
 ### Main View
 ![Main view of the application](https://github.com/olgashi/Inventory-Management-Application/blob/master/main-view.png)
 
+### Nodify part view
+![Modify part view](https://github.com/olgashi/Inventory-Management-Application/blob/master/modify-part-view.jpg)
 
+### Modify product view
+![Modify product view](https://github.com/olgashi/Inventory-Management-Application/blob/master/modify-product.png)
+
+### Add product view, warning if fields not provided and/or no parts associated with product
+![Product view with warning](https://github.com/olgashi/Inventory-Management-Application/blob/master/add-product-warning.png)
 
 ## Parts
 User can delete a selected part from the list, they can search for a part/product. 
