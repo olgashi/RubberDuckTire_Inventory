@@ -11,6 +11,9 @@ There are five classes and 16 instance variables. All variables are accessible t
 
 There are four main screens in the application: “Add Part”, “Modify Part”, “Add Product”, or “Modify Product”.
 
+### Main View
+![Main view of the application](https://github.com/olgashi/Inventory-Management-Application/blob/master/main-view.png)
+
 
 
 ## Parts
