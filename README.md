@@ -10,7 +10,7 @@ Each Product has a name, id, current number of products in stock, price, min and
 ## Classes, variables, application scenes
 There are five classes and 16 instance variables. All variables are accessible through getter methods and modified through setter methods.
 
-There are four main screens in the application: “Add Part”, “Modify Part”, “Add Product”, or “Modify Product”.
+There are five main screens in the application: "Main View", “Add Part”, “Modify Part”, “Add Product”, “Modify Product”.
 
 ### Main View
 ![Main view of the application](https://github.com/olgashi/Inventory-Management-Application/blob/master/main-view.png)
@@ -25,12 +25,12 @@ Warning is displayed if user did not select product and clicked 'Modify'.
 ![Modify product view](https://github.com/olgashi/Inventory-Management-Application/blob/master/modify-product.png)
 
 ### Add product view
-Warning is displayed if field vaslues are not provided and/or no parts selected to be associated with the product.
+Warning is displayed if field values are not provided and/or no parts selected to be associated with the product.
 ![Product view with warning](https://github.com/olgashi/Inventory-Management-Application/blob/master/add-product-warning.png)
 
 ## Parts
 User can delete a selected part from the list, they can search for a part/product. 
-User can create a part of type “In-House” or “Outsourced” by providing enter name, inventory level, price, max and min values, and company name or machine ID, all of which are required fields.
+User can create a part of type “In-House” or “Outsourced” by providing name, inventory level, price, max and min values, and company name or machine ID, all of which are required fields.
 User can modify any part by changing its type or any of the information about it (name, current stock, price, min and max inventory levels).
 
 ## Products
