@@ -12,6 +12,9 @@ There are five classes and 16 instance variables. All variables are accessible t
 
 There are five main screens in the application: "Main View", “Add Part”, “Modify Part”, “Add Product”, “Modify Product”.
 
+### UML Class Diagram
+![UML Class Diagram](https://github.com/olgashi/Inventory_Management_Application/blob/master/inventory-app-uml-diagram.png)
+
 ### Main View
 ![Main view of the application](https://github.com/olgashi/Inventory-Management-Application/blob/master/main-view.png)
 
