@@ -1,4 +1,4 @@
-# Inventory Management Application - Descktop Application (Java FX)
+# Inventory Management Application - Desktop Application (Java FX)
 _Rubber Duck Tire Corp_
 
 Inventory management application tracks inventory for a small Tire manufacturing enterprise. Inventory consists of Tire Products and Tire Parts.
