@@ -3,7 +3,10 @@
 </div>
 
 # Inventory Management Application - Desktop Application (Java FX)
-_Rubber Duck Tire Corp_
+Rubber Duck Tire Corp
+
+<img width="318" alt="RubberDuckTire-logo" src="https://user-images.githubusercontent.com/41551585/184003787-6daac454-2b8a-4b58-b03d-814539f40af1.png">
+
 
 Inventory management application tracks inventory for a small Tire manufacturing enterprise. Inventory consists of Tire Products and Tire Parts.
 Each Part has a name, id, current number of parts in stock, price, min and max inventory levels associated with it. Part can be of either InHouse or Outsourced type (class).
